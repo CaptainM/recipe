@@ -6,4 +6,9 @@ class ApplicationController < ActionController::Base
   def index 
 
   end
+
+  def search
+  	search_results = Yummly.search(params[:search])
+  	render json: search_results
+  end
 end

@@ -27,5 +27,14 @@ var App = {
 	Models: {}, 
 	Collections: {}, 
 	Views: {}, 
-	Routers: {}
+	Routers: {},
+	initialize: function() {
+		console.log("loading my app.js");
+		App.recipes = new App.Collections.RecipeCollection();
+		App.searchView = new App.Views.SearchFormView({collection: App.recipes});
+	}
 };
+
+$(function() {
+	App.initialize();
+});
