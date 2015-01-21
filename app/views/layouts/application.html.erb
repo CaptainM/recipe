@@ -8,6 +8,21 @@
 </head>
 <body>
 <h1>Can you see me?</h1>
+
+<div id="add-form">
+  <input type="text" id="add-input" placeholder="Stuff in your Fridge" autofocus="true">
+  <button id="add-button">Add</button>
+  <button id="search-button">Search</button>
+ </div>
+
+<div>
+	<% result = Yummly.search('Onion soup') %>
+	<%= result.total %>
+	<%= result.collect {|recipe| recipe.name} %>
+</div>
+<div id="ingredients"></div>
+
+
 <%= yield %>
 
 </body>
