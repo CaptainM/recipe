@@ -3,7 +3,7 @@ App.Views.Recipe = Backbone.View.extend({
 	className: 'results',
 	initialize: function() {
 		console.log("new recipe view");
-		this.template = HandlebarsTemplates['recipes'];
+		this.template = HandlebarsTemplates['recipe'];
 		this.render();
 	},
 	render: function() {
