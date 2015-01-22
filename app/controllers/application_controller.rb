@@ -9,6 +9,13 @@ class ApplicationController < ActionController::Base
 
   def search
   	search_results = Yummly.search(params[:search])
-  	render json: search_results
+  	url = search_results.matches[0]["id"]
+  	full_url = "http://www.yummly.com/recipe/" + url
+  	doc = Nokogiri::HTML(HTTParty.get(full_url))
+  	recipe = {}
+		test = doc.css('div#top').map do |element|
+			recipe[:title] = element.css()
+		end
+  	render json: recipe.to_json
   end
 end
