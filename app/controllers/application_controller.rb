@@ -12,10 +12,19 @@ class ApplicationController < ActionController::Base
   	url = search_results.matches[0]["id"]
   	full_url = "http://www.yummly.com/recipe/" + url
   	doc = Nokogiri::HTML(HTTParty.get(full_url))
-  	recipe = {}
-		test = doc.css('div#top').map do |element|
-			recipe[:title] = element.css()
-		end
-  	render json: recipe.to_json
+  	my_recipes = []
+    i = 1
+    counter = doc.css('ul li.ingredient').length
+    while i <= counter do 
+      my_recipes.push(
+        {
+          :amount => doc.css("li.ingredient:nth-child(#{i}) span.amount").text, 
+          :name => doc.css("li.ingredient:nth-child(#{i}) strong.name").text,
+          :instructions => doc.css("li.ingredient:nth-child(#{i}) span.remainder").text
+        }
+      )
+      i += 1
+    end
+  	render json: my_recipes.to_json
   end
 end
