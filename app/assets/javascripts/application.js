@@ -31,6 +31,7 @@ var App = {
 	initialize: function() {
 		console.log("loading my app.js");
 		App.recipes = new App.Collections.RecipeCollection();
+		App.listView = new App.Views.RecipeList({collection: App.recipes});
 		App.searchView = new App.Views.SearchFormView({collection: App.recipes});
 	}
 };
