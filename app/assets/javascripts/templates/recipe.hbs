@@ -1,7 +1,9 @@
 <ul class = 'recipe-list'>
 	{{#each recipes}}
+		<li>{{this.recipe.[0]}}</li>
+		<li>{{this.recipe.[1]}}</li>
 		{{#each recipe}}
-			<li>{{this.name}}</li>
+			<li>{{this.ingredient}}</li>
 			<li>{{this.amount}}</li>
 			<li>{{this.instructions}}</li>
 		{{/each}}
