@@ -1,3 +1,9 @@
-<p>{{amount}}</p>
-<p>{{name}}</p>
-<p>{{instructions}}</p>
+<ul class = 'recipe-list'>
+	{{#each recipes}}
+		{{#each recipe}}
+			<li>{{this.name}}</li>
+			<li>{{this.amount}}</li>
+			<li>{{this.instructions}}</li>
+		{{/each}}
+	{{/each}}
+</ul>
