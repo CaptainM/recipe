@@ -16,7 +16,7 @@
  </div>
 
 <div>
-	<% result = Yummly.search('Onion soup') %>
+	<% result = Yummly.search('apples') %>
 	<%= result.total %>
 	<%= result.collect {|recipe| recipe.name} %>
 </div>

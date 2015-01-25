@@ -16,11 +16,18 @@ class ApplicationController < ActionController::Base
     	one_recipe = []
       recipe_name = recipe["recipeName"]
       one_recipe.push(recipe_name)
-
-      third_party = doc.css("button#source-full-directions")[0]["link"]
-      puts third_party
-      third_party_doc = Nokogiri::HTML(HTTParty.get(third_party))
-      one_recipe.push(third_party_doc)
+      if doc.css("div.yummly-prep-steps ol").length == 1
+         one_recipe.push(doc.css("li.prep-step").text)
+      else
+        third_party = doc.css("button#source-full-directions")[0]["link"]
+          if third_party.include?("http://")
+            one_recipe.push(third_party[5..-1])
+          else
+            one_recipe.push('//www.yummly.com' + third_party)
+          end
+        end
+        # third_party_doc = Nokogiri::HTML(HTTParty.get(third_party))
+        # one_recipe.push(third_party_doc)
 
       i = 1
       counter = doc.css('ul li.ingredient').length
@@ -32,6 +39,7 @@ class ApplicationController < ActionController::Base
             :instructions => doc.css("li.ingredient:nth-child(#{i}) span.remainder").text
           }
         )
+        
         i += 1
       end
       {:recipe => one_recipe}
