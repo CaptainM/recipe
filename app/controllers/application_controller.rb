@@ -21,14 +21,16 @@ class ApplicationController < ActionController::Base
       else
         third_party = doc.css("button#source-full-directions")[0]["link"]
           if third_party.include?("http://")
-            one_recipe.push(third_party[5..-1])
+            no_Http = (third_party[5..-1])
+            if no_Http[-1, 1] == '/'
+              one_recipe.push(no_Http.chop)
+            else
+              one_recipe.push(no_Http)
+            end
           else
             one_recipe.push('//www.yummly.com' + third_party)
           end
         end
-        # third_party_doc = Nokogiri::HTML(HTTParty.get(third_party))
-        # one_recipe.push(third_party_doc)
-
       i = 1
       counter = doc.css('ul li.ingredient').length
       while i <= counter do 
@@ -42,12 +44,15 @@ class ApplicationController < ActionController::Base
         
         i += 1
       end
+      
       {:recipe => one_recipe}
+
     end
   	render json: {:recipes => my_recipes}.to_json
     
 
   end
+
 end
 
 # recipes = [

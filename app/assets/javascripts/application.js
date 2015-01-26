@@ -33,6 +33,7 @@ var App = {
 		App.recipes = new App.Collections.RecipeCollection();
 		App.listView = new App.Views.RecipeList({collection: App.recipes});
 		App.searchView = new App.Views.SearchFormView({collection: App.recipes});
+		App.modal = new App.Views.Modal({model: new App.Models.Recipe() });
 	}
 };
 

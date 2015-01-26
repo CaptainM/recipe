@@ -1,0 +1,6 @@
+#modal {
+	display: none;
+	z-index: 50;
+	position: fixed;
+	background-color: grey;
+}
