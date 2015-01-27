@@ -2,7 +2,7 @@
 	display: none;
 	z-index: 50;
 	position: fixed;
-	background-color: grey;
+	background-color: rgba(0,0,0,.85);
 	height: inherit;
 	width: 100%;
 	text-align: center;
@@ -11,5 +11,7 @@
 .close-modal {
 	float: left;
 	cursor: pointer;
+	color: white;
+	font-size: 25px;
 }
 

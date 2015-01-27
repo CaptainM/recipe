@@ -27,9 +27,9 @@ App.Views.SearchFormView = Backbone.View.extend({
 		$('#add-input').val("");
 	},
 	renderComponent: function(ingredient) {
-		//this.template{name: ingredient};
 		console.log(ingredient);
-		this.$el.append($("<div>").text(ingredient));
+		
+		this.$el.append($("<div>").text(ingredient).addClass('user_input'));
 	},
 	search: function() {
 		console.log('search function');
