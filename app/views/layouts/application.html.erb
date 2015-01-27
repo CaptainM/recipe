@@ -7,18 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id='modal'></div>
-<h1>Recipe Findr</h1>
+<div id='modal'></div>
+<div id='header'>
+	<div id='intro'>
+	  <h1>Fridge Food</h1>
+	  <h3>Let's make a meal</h3>
+	</div>
 
-<div id="add-form">
-  <input type="text" id="add-input" placeholder="Stuff in your Fridge" autofocus="true">
-  <button id="add-button">Add</button>
-  <button id="search-button">Search</button>
- </div>
-<div id="ingredients"></div>
+	<div id="add-form">
+	  <input type="text" id="add-input" placeholder="What's in your Fridge?" autofocus="true">
+	  <button id="add-button">Add</button>
+	  <button id="search-button">Search</button>
+	</div>
+</div>
+	<div id="ingredients"></div>
 
 
-<%= yield %>
+
+
 
 </body>
+
 </html>

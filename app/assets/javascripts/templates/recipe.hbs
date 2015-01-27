@@ -1,15 +1,25 @@
-<ul class = 'recipe-list'>
-	{{#each recipes}}
-		<li><img src='{{this.recipe.[0].image}}'></li>
-		<li>{{this.recipe.[0].name}}</li>
-		{{#each recipe}}
-			{{#each ingredients}}
-				<li>{{amount}}</li>
-				<li>{{ingredient}}</li>
-				<li>{{instructions}}</li>
-			{{/each}}
+<div class='container'>
+	<ul class = 'recipe-list'>
+		{{#each recipes}}
+			<div class='one_recipe'>
+				<div class='title'>
+					<h2>{{this.recipe.[0].name}}</h2>
+				</div>
+				<div class='image'>
+					<li><img src='{{this.recipe.[0].image}}'></li>
+				</div>
+				{{#each recipe}}
+					{{#each ingredients}}
+						<div class='ingredients'>
+							<li>{{amount}}</li>
+							<li>{{ingredient}}</li>
+							<li>{{instructions}}</li>
+						</div>
+					{{/each}}
+				{{/each}}
+				<button class='view' data-iframeurl='{{this.recipe.[0].url}}'>View Full Instructions</button>
+			</div>
 		{{/each}}
-		<button class='view' data-iframeurl='{{this.recipe.[0].url}}'>View Full Instructions</button>
-	{{/each}}
-</ul>
+	</ul>
+</div>
 
