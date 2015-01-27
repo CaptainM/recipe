@@ -13,61 +13,62 @@ class ApplicationController < ActionController::Base
     	url = recipe["id"]
     	full_url = "http://www.yummly.com/recipe/" + url
     	doc = Nokogiri::HTML(HTTParty.get(full_url))
-    	one_recipe = []
-      recipe_name = recipe["recipeName"]
-      one_recipe.push(recipe_name)
-      if doc.css("div.yummly-prep-steps ol").length == 1
-         one_recipe.push(doc.css("li.prep-step").text)
-      else
-        third_party = doc.css("button#source-full-directions")[0]["link"]
-          if third_party.include?("http://")
-            no_Http = (third_party[5..-1])
-            if no_Http[-1, 1] == '/'
-              one_recipe.push(no_Http.chop)
-            else
-              one_recipe.push(no_Http)
-            end
-          else
-            one_recipe.push('//www.yummly.com' + third_party)
-          end
+      one_recipe = {}
+      one_recipe[:name] = recipe["recipeName"]
+      third_party = doc.css("button#source-full-directions")[0]["link"]
+        if third_party.include?("http://")
+          one_recipe[:url] = (third_party[5..-1])
+        else
+          one_recipe[:url] = ('//www.yummly.com' + third_party)
         end
+      ingredient_array = []
       i = 1
       counter = doc.css('ul li.ingredient').length
-      while i <= counter do 
-        one_recipe.push(
-          {
-            :amount => doc.css("li.ingredient:nth-child(#{i}) span.amount").text, 
-            :ingredient => doc.css("li.ingredient:nth-child(#{i}) strong.name").text,
-            :instructions => doc.css("li.ingredient:nth-child(#{i}) span.remainder").text
-          }
-        )
-        
+      while i <= counter do
+          ingredient_hash = {
+              :amount => doc.css("li.ingredient:nth-child(#{i}) span.amount").text, 
+              :ingredient => doc.css("li.ingredient:nth-child(#{i}) strong.name").text,
+              :instructions => doc.css("li.ingredient:nth-child(#{i}) span.remainder").text
+            }
+          ingredient_array.push(ingredient_hash)
         i += 1
       end
-      
-      {:recipe => one_recipe}
-
+      one_recipe[:ingredients] = ingredient_array
+      many_recipes = []
+      many_recipes.push(one_recipe)
+      {:recipe => many_recipes}
     end
   	render json: {:recipes => my_recipes}.to_json
-    
-
   end
 
 end
 
 # recipes = [
-#   [
-#     {
-#       amount: 'jahsdf'
-#     },
-#     {
-#       amount: 'jhaksdjf'
-#     }
-#   ],
-
-#   [
-#     {
-#       amount: 'oqiweru'
-#     }
-#   ]
+#  {
+#     name: 'jahsdf'
+#     url: 'jhaksdjf'
+#     ingredients: 
+#       [
+#         {
+#           amount:
+#           instructions:
+#           name:
+#         }
+#        ]
+#     
+#   },
+#   {
+#     name: 'jahsdf'
+#     url: 'jhaksdjf'
+#     ingredients: 
+#       [
+#         {
+#           amount:
+#           instructions:
+#           name:
+#         }
+#        ]
+#     
+#   },
+#   
 # ]

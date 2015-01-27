@@ -1,13 +1,14 @@
 <ul class = 'recipe-list'>
 	{{#each recipes}}
-		<li>{{this.recipe.[0]}}</li>
-		<li>{{this.recipe.[1]}}</li>
+		<li>{{this.recipe.[0].name}}</li>
 		{{#each recipe}}
-			<li>{{this.ingredient}}</li>
-			<li>{{this.amount}}</li>
-			<li>{{this.instructions}}</li>
+			{{#each ingredients}}
+				<li>{{amount}}</li>
+				<li>{{ingredient}}</li>
+				<li>{{instructions}}</li>
+			{{/each}}
 		{{/each}}
-		<button class='view' data-iframeurl={{this.recipe.[1]}}>View Full Instructions</button>
+		<button class='view' data-iframeurl='{{this.recipe.[0].url}}'>View Full Instructions</button>
 	{{/each}}
 </ul>
 
