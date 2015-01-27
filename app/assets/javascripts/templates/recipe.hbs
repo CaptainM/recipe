@@ -1,5 +1,6 @@
 <ul class = 'recipe-list'>
 	{{#each recipes}}
+		<li><img src='{{this.recipe.[0].image}}'></li>
 		<li>{{this.recipe.[0].name}}</li>
 		{{#each recipe}}
 			{{#each ingredients}}
