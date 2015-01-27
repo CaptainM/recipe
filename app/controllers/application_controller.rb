@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     	doc = Nokogiri::HTML(HTTParty.get(full_url))
       one_recipe = {}
       one_recipe[:name] = recipe["recipeName"]
+      one_recipe[:image] = (recipe["smallImageUrls"][0])[0..-3] << "400"
       third_party = doc.css("button#source-full-directions")[0]["link"]
         if third_party.include?("http://")
           one_recipe[:url] = (third_party[5..-1])
@@ -35,7 +36,7 @@ class ApplicationController < ActionController::Base
       end
       one_recipe[:ingredients] = ingredient_array
       many_recipes = []
-      many_recipes.push(one_recipe)
+      many_recipes.push(one_recipe) unless one_recipe[:ingredients][0][:amount] == ""
       {:recipe => many_recipes}
     end
   	render json: {:recipes => my_recipes}.to_json
