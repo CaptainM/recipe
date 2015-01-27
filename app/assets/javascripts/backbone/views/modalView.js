@@ -20,7 +20,10 @@ App.Views.Modal = Backbone.View.extend({
 		this.$el.fadeOut(100);
 	},
 	render: function() {
-		this.$el.html(this.template(this.model.toJSON()));
+		var usefulObject = {
+			myIframe: this.myIframe
+		};
+		this.$el.html(this.template(usefulObject));
 	}, 
 	setUrl: function(iframeurl) {
 		this.myIframe = iframeurl;
