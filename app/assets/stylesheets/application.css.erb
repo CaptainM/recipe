@@ -15,15 +15,25 @@
  */
 @import url(http://fonts.googleapis.com/css?family=Special+Elite);
 
+html {
+	height: 100%;
+	width: 100%;
+}
 body {
-	background-image: url(<%= image_path 'secondrefridge.jpg' %>);
-	background-repeat: no-repeat;
-	background-position:left 190px top 300px;
-
-	/*background-position: 35% -15%;*/
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 700;
-	font-weight: bold; 
+	font-weight: bold;
+	height: 100%;
+}
+#bg {
+	background-size: 100%;
+	background-image: url(<%= image_path 'secondrefridge.jpg' %>);
+	background-repeat: no-repeat;
+	background-position: center top 170px;
+	height: 1500px;
+	width: 100%;
+	position: absolute;
+	z-index: -2;
 }
 input[type="text"] {
 	width: 400px;
@@ -35,6 +45,8 @@ ul {
 }
 #header {
 	background-color: black;
+	max-height: 50%;
+	z-index: 1;
 }
 #intro {
 	
