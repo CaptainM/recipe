@@ -8,7 +8,11 @@ module YummlyParser
 	    	:image => (recipe["smallImageUrls"][0])[0..-3] << "400"
 	    }
 	    one_recipe = parse_third_party_data(one_recipe, recipe_id)
-	    one_recipe
+	    if one_recipe
+	    	one_recipe 
+	    else
+	    	next
+	    end
   	end
 	# return the final parsed results for all recipes
 		return parsed_results
@@ -17,16 +21,20 @@ module YummlyParser
 	def self.parse_third_party_data(recipe, id)
   	full_url = "http://www.yummly.com/recipe/" + id
   	doc = Nokogiri::HTML(HTTParty.get(full_url))
-	  third_party = doc.css("button#source-full-directions")[0]["link"]
-      
-    if third_party.include?("http://")
-      recipe[:url] = (third_party[5..-1])
-    else
-      recipe[:url] = ('//www.yummly.com' + third_party)
-    end
+  	if !doc.css("button#source-full-directions").empty?
+		  third_party = doc.css("button#source-full-directions")[0]["link"]
+	      
+	    if third_party.include?("http://")
+	      recipe[:url] = (third_party[5..-1])
+	    else
+	      recipe[:url] = ('//www.yummly.com' + third_party)
+	    end
 
-	# return a recipe with third party data
-		return parse_ingredients(recipe, doc)
+		# return a recipe with third party data
+			return parse_ingredients(recipe, doc)
+		else
+			return nil
+		end
 	end
 
 	def self.parse_ingredients(recipe, doc)
