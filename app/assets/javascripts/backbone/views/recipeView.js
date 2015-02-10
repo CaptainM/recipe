@@ -14,9 +14,9 @@ App.Views.Recipe = Backbone.View.extend({
 		'click button.view': 'showModal'
 	},
 	showModal: function() {
-		console.log($('button.view').data("iframeurl"));
+		console.log(this.$('button.view').data("iframeurl"));
 	
-		var iframeurl = $('button.view').data("iframeurl");
+		var iframeurl = this.$('button.view').data("iframeurl");
 		App.modal.setUrl(iframeurl);
 		App.modal.setRecipe(this.model);
 		App.modal.show();
