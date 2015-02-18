@@ -51,7 +51,6 @@ gem 'simplecov', :require => false, :group => :test
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-source: "https://rails-assets.org"
-gem "rails-assets-underscore"
-source: "https://rails-assets.org"
-gem "rails-assets-backbone"
+
+gem "rails-assets-underscore", source: "https://rails-assets.org"
+gem "rails-assets-backbone",source: "https://rails-assets.org"
