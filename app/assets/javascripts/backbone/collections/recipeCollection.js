@@ -8,7 +8,10 @@ App.Collections.RecipeCollection = Backbone.Collection.extend({
 		this.fetch({
 			url: this.url + 'search',
 			data: {search: term},
-			reset: true
+			reset: true,
+			success: function(col, data) {
+				debugger;
+			}
 		});
 	}
 });
