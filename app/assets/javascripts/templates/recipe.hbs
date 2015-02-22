@@ -1,23 +1,21 @@
 <div class='container'>
 	<ul class = 'recipe-list'>
-		{{#each recipes}}
-			<div class='one_recipe'>
-				<div class='title'>
-					<h2>{{this.name}}</h2>
-				</div>
-				<div class='image'>
-					<li><img src='{{this.image}}'></li>
-				</div>
-					{{#each this.ingredients}}
-						<div class='ingredients'>
-							<li>{{amount}}</li>
-							<li>{{ingredient}}</li>
-							<li>{{instructions}}</li>
-						</div>
-					{{/each}}
-				<button class='view' data-iframeurl='{{this.url}}'>View Full Instructions</button>
+		<div class='one_recipe'>
+			<div class='title'>
+				<h2>{{this.name}}</h2>
 			</div>
-		{{/each}}
+			<div class='image'>
+				<li><img src='{{this.image}}'></li>
+			</div>
+				{{#each this.ingredients}}
+					<div class='ingredients'>
+						<li>{{amount}}</li>
+						<li>{{ingredient}}</li>
+						<li>{{instructions}}</li>
+					</div>
+				{{/each}}
+			<button class='view' data-iframeurl='{{this.url}}'>View Full Instructions</button>
+		</div>
 	</ul>
 </div>
 

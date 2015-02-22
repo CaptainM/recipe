@@ -36,6 +36,8 @@ App.Views.SearchFormView = Backbone.View.extend({
 		//$.ajax
 		var term = this.components.join(" ");
 		console.log(term);
+		//add spinner here 
+
 		this.collection.getRecipes(term);
 	}
 });

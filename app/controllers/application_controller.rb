@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   	search_results = Yummly.search(params[:search])
   	my_recipes = YummlyParser.parse_search_results(search_results)
     valid_recipes = my_recipes.select { |recipe| recipe[:ingredients][0][:amount] != "" if recipe }
-    render json: { :recipes => valid_recipes }
+    render json: valid_recipes
   end
 
 end
