@@ -41,7 +41,7 @@ gem 'rails_12factor', group: :production
 gem 'bcrypt', '~> 3.1.7'
 gem 'capybara', '~> 2.4.4'
 gem 'simplecov', :require => false, :group => :test
-
+gem 'font-awesome-rails', '~> 4.3.0.0'
 # Use unicorn as the app server
 # gem 'unicorn'
 
