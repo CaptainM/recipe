@@ -3,7 +3,6 @@ App.Views.SearchFormView = Backbone.View.extend({
 	initialize: function() {
 		console.log(this);
 		this.components = [];
-		// this.template = HandlebarsTemplates['component'];
 	}, 
 	events: {
 		'click #add-button': 'addByClick',
@@ -33,11 +32,9 @@ App.Views.SearchFormView = Backbone.View.extend({
 	},
 	search: function() {
 		console.log('search function');
-		//$.ajax
 		var term = this.components.join(" ");
 		console.log(term);
 		//add spinner here 
-
 		this.collection.getRecipes(term);
 	}
 });
